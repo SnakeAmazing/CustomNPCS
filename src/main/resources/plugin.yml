@@ -1,0 +1,8 @@
+main: me.snakeamazing.customnpcs.CustomNPCS
+name: CustomNPCS
+author: SnakeAmazing
+version: ${project.version}
+api-version: 1.13
+
+depend:
+  - Citizens

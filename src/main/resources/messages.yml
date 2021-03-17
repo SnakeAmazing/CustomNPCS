@@ -1,0 +1,27 @@
+# PARA COLOCAR LOS ITEMS PUEDES UTILIZAR:
+# HELMET
+# CHESTPLATE
+# LEGGINGS
+# BOOTS
+# HAND
+# OFFHAND
+# PERMISO --> customnpcs.admin actionbar.admin
+
+global:
+  prefix: "&9CustomNPCS: &r"
+  only-player-sender: "%prefix%&cEl comando solo puede ser ejecutado por un jugador."
+  no-permission: "%prefix%&cNo tienes permisos."
+  invalid-argument: "%prefix%&cEl argumento no es válido."
+  usage: "&9Uso: "
+  args: "<npcId> <slot> <item> <data>"
+npc:
+  help:
+    - "&7------------------------"
+    - "&b/customnpc additem --> &eAñade items a un npc."
+    - "&b/customnpc delitem --> &eElimina items de un npc."
+    - "&7------------------------"
+  non-existent: "%prefix%&c¡El NPC no existe!"
+  material-cannot-be-null: "%prefix%&c¡El material no puede ser nulo!"
+  invalid-slot: "%prefix%&c¡El slot %slot% introducido no es valido!"
+  added-item-successfully: "%prefix%&aEl item ha sido añadido correctamente en el slot %slot%."
+  removed-item-successfully: "%prefix%&aEl item ha sido removido correctamente del slot %slot%."
