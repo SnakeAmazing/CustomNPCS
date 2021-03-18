@@ -28,10 +28,10 @@ public class CustomTranslationProvider implements TranslationProvider {
                 return messages.getString("global.only-player-sender")
                         .replace("%prefix%", messages.getString("global.prefix"));
             case "command.no-permission":
-                return messages.getString("commons.not-enough-permissions")
+                return messages.getString("global.no-permission")
                         .replace("%prefix%", messages.getString("global.prefix"));
             case "command.subcommand.invalid":
-                return messages.getString("commons.invalid-argument")
+                return messages.getString("global.invalid-argument")
                         .replace("%prefix%", messages.getString("global.prefix"));
         }
         return translations.get(key);
