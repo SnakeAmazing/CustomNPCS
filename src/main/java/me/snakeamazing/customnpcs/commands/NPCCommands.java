@@ -26,6 +26,9 @@ public class NPCCommands implements CommandClass {
     @Command(names = "")
     public boolean onCustomNPCCommand(@Sender Player player) {
         for (String line : messages.getStringList("npc.help")) {
+            if (line.equals("")) {
+                continue;
+            }
             player.sendMessage(line);
         }
 
@@ -37,12 +40,18 @@ public class NPCCommands implements CommandClass {
         NPC npc = getNPC(id, player);
 
         if (npc == null) {
+            if (messages.getString("npc.non-existent").equals("")) {
+                return true;
+            }
             player.sendMessage(messages.getString("npc.non-existent")
                     .replace("%prefix%", messages.getString("global.prefix")));
             return true;
         }
 
         if (item == null || item.equalsIgnoreCase("air") || item.equals("")) {
+            if (messages.getString("npc.material-cannot-be-null").equals("")) {
+                return true;
+            }
             player.sendMessage(messages.getString("npc.material-cannot-be-null")
                     .replace("%prefix%", messages.getString("global.prefix")));
             return true;
@@ -51,6 +60,9 @@ public class NPCCommands implements CommandClass {
         String primal_material = "minecraft:" + item;
         Material material = Material.matchMaterial(primal_material);
         if (material == null) {
+            if (messages.getString("npc.material-cannot-be-null").equals("")) {
+                return true;
+            }
             player.sendMessage(messages.getString("npc.material-cannot-be-null")
                     .replace("%prefix%", messages.getString("global.prefix")));
             return true;
@@ -64,6 +76,9 @@ public class NPCCommands implements CommandClass {
         itemStack.setItemMeta(itemMeta);
 
         if (updateNPC(itemStack, where, npc, player)) {
+            if (messages.getString("npc.added-item-successfully").equals("")) {
+                return true;
+            }
             player.sendMessage(messages.getString("npc.added-item-successfully")
                     .replace("%slot%", where)
                     .replace("%prefix%", messages.getString("global.prefix")));
@@ -77,6 +92,9 @@ public class NPCCommands implements CommandClass {
         NPC npc = getNPC(id, player);
 
         if (npc == null) {
+            if (messages.getString("npc.non-existent").equals("")) {
+                return true;
+            }
             player.sendMessage(messages.getString("npc.non-existent")
                     .replace("%prefix%", messages.getString("global.prefix")));
             return true;
@@ -84,6 +102,9 @@ public class NPCCommands implements CommandClass {
 
         ItemStack itemStack = new ItemStack(Material.AIR);
         if (updateNPC(itemStack, where, npc, player)) {
+            if (messages.getString("npc.removed-item-successfully").equals("")) {
+                return true;
+            }
             player.sendMessage(messages.getString("npc.removed-item-successfully")
                     .replace("%slot%", where)
                     .replace("%prefix%", messages.getString("global.prefix")));
@@ -95,6 +116,7 @@ public class NPCCommands implements CommandClass {
     @Command(names = "reload")
     public boolean onReloadCommand(@Sender Player player) {
         player.sendMessage(ChatColor.YELLOW + "Trying to reload plugin files...");
+        messages.save();
         messages.reload();
         player.sendMessage(ChatColor.GREEN + "Reloaded plugins files successfully.");
 
@@ -138,6 +160,9 @@ public class NPCCommands implements CommandClass {
                 break;
 
             default:
+                if (messages.getString("npc.invalid-slot").equals("")) {
+                    return true;
+                }
                 player.sendMessage(messages.getString("npc.invalid-slot")
                         .replace("%slot%", where)
                         .replace("%prefix%", messages.getString("global.prefix")));
